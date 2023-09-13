@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <title>Utilizando Json</title>
+</head>
+
+<body>
+    <div id="usuarios">
+
+    </div>
+    <script>
+        let divUsuarios =
+            document.querySelector("#usuarios")
+        fetch("dados.json").then((response) => {
+            response.json().then((dados) => {
+                dados.usuarios.map((usuario) => {
+                    divUsuarios.innerHTML += `<li>
+    ${usuario.nome} - ${usuario.idade} anos</li>`
+                })
+            })
+        })
+         // Função para modificar o JSON
+      function modificarJSON() {
+        // Obter o elemento JSON
+        var jsonElement = document.getElementById("json");
+
+        // Converter o JSON para objeto JavaScript
+        var jsonObject = JSON.parse(jsonElement.value);
+
+        // Modificar o valor desejado
+        jsonObject.chave = "novo valor";
+
+        // Converter o objeto JavaScript de volta para JSON
+        var novoJSON = JSON.stringify(jsonObject);
+
+        // Atualizar o valor do elemento JSON na página
+        jsonElement.value = novoJSON;
+      }
+    </script>
+    </div>
+    <textarea id="json" rows="4" cols="50">
+        {
+          "nome": 
+          "idade":
+        }
+      </textarea>
+      <br>
+      <button onclick="modificarJSON()">Modificar JSON</button>
+    
+</body>
+
+</html>
